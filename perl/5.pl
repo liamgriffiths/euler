@@ -2,6 +2,8 @@
 use List::Util qw(max);
 use strict;
 
+# What is the smallest number that is evenly divisible by all of the numbers from 1 to 20?
+
 sub least_common_multiple{
   my @nums = shift;
   my @prime_factors = map { get_prime_factors($_) } @nums;

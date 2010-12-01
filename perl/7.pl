@@ -1,6 +1,8 @@
 #!/usr/bin/perl
-
 use strict;
+
+# What is the 10001st prime number?
+
 
 sub is_prime{
   my $n = shift;
@@ -16,7 +18,7 @@ sub get_big_prime{
   return $N if $cnt == 10001;
   $N = $i if is_prime($i);
   $cnt++ if $N == $i;
-  get_big_prime($i+=2, $cnt, $N);
+  return get_big_prime($i+=2, $cnt, $N);
 }
 
 print get_big_prime(13, 5, 13);

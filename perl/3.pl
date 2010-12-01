@@ -1,6 +1,8 @@
 #!/usr/bin/perl
 use strict;
 
+# What is the largest prime factor of the number 600851475143 ?
+
 sub is_prime{
   my $n = shift;
   for(my $i = 2; $i < $n; $i++){
@@ -19,7 +21,7 @@ sub largest_prime_factor{
       }
     }
   }
-  largest_prime_factor($N, $i += 2, $largest);
+  return largest_prime_factor($N, $i += 2, $largest);
 }
 
 print largest_prime_factor(600851475143, 3);
