@@ -13,12 +13,10 @@ sub is_prime{
 
 sub largest_prime_factor{
   my ($N, $i, $largest) = @_;
-  return $largest if ($i * $i >= $N);
+  return $largest if $i * $i >= $N;
   if($N % $i == 0){
-    if($i & 1){
-      if(is_prime($i)){
-        $largest = $i;
-      }
+    if(is_prime($i)){
+      $largest = $i;
     }
   }
   return largest_prime_factor($N, $i += 2, $largest);

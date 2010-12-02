@@ -6,7 +6,7 @@ use strict;
 
 sub sieve_of_eratosthenes{
   my $N = shift;
-  my @list = map { $_ } 0..$N;
+  my @list = 0..$N;
 
   for(my $i = 2; $i < $N; $i++){
     if($list[$i]){

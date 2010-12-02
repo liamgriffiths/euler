@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use List::Util qw(max min sum reduce);
+use List::Util qw(sum max reduce);
 use strict;
 
 # What is the greatest product of four adjacent numbers in any direction 
@@ -28,20 +28,55 @@ my @grid = (
   [qw/01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48/]
 );
 
-sub get_number{
+sub northsouth{
   my @grid = @_;
-  my %coordinates = ();
-  
-  for(my $x = 0; $x<@grid; $x++){  
-    for(my $y = 0; $y<@{$grid[$x]}; $y++){
-      $coordinates{ $grid[$x][$y] } = ('x' => $x, 'y' => $y);
+  my @list = ();
+  for(my $x = 0; $x < @grid; $x++){
+    for(my $y = 0; $y + 3<@grid; $y++){
+      push(@list, [map { $grid[$y+$_][$x] } 0..3]);
     }
   }
-  return %coordinates;
+  return reduce_max_product(@list);
 }
 
-sub 
+sub eastwest{
+  my @grid = @_;
+  my @list = ();
+  for(my $y = 0; $y < @grid; $y++){
+    for(my $x = 0; $x + 3<@grid; $x++){
+      push(@list, [map { $grid[$y][$x+$_] } 0..3]);
+    }
+  }
+  return reduce_max_product(@list);
+}
 
-get_number(@grid);
+sub nwestseast{
+  my @grid = @_;
+  my @list = ();
+  for(my $x = 3; $x + 3 < @grid; $x++){
+    for(my $y = 0; $y + 3 < @grid; $y++){
+      push(@list, [map { $grid[$y+$_][$x-$_] } 0..3]);
+    }
+  }
+  return reduce_max_product(@list);
+}
+
+sub swestneast{
+  my @grid = @_;
+  my @list = ();
+  for(my $x = 0; $x + 3 < @grid; $x++){
+    for(my $y = 3; $y + 3 < @grid; $y++){
+      push(@list, [map { $grid[$y-$_][$x+$_] } 0..3]);
+    }
+  }
+  return reduce_max_product(@list);
+}
+
+sub reduce_max_product{
+  return reduce { $a * $b } map { @$_ } reduce { sum(@$a) > sum(@$b) ? $a : $b } @_;  
+}
+
+# not the most concise code i've ever written ;) but it runs quick
+print max map { $_->(@grid) } (\&northsouth, \&eastwest, \&nwestseast, \&swestneast);
 print "\n";
 
