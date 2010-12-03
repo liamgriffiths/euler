@@ -2,6 +2,7 @@
 use List::Util qw(sum max reduce);
 use strict;
 
+# What is the value of the first triangle number to have over five hundred divisors?
 
 sub triangle_number{
   my @n = @_;

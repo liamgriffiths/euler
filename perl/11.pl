@@ -32,7 +32,7 @@ sub northsouth{
   my @grid = @_;
   my @list = ();
   for(my $x = 0; $x < @grid; $x++){
-    for(my $y = 0; $y + 3<@grid; $y++){
+    for(my $y = 0; $y + 3 < @grid; $y++){
       push(@list, [map { $grid[$y+$_][$x] } 0..3]);
     }
   }
@@ -43,7 +43,7 @@ sub eastwest{
   my @grid = @_;
   my @list = ();
   for(my $y = 0; $y < @grid; $y++){
-    for(my $x = 0; $x + 3<@grid; $x++){
+    for(my $x = 0; $x + 3 < @grid; $x++){
       push(@list, [map { $grid[$y][$x+$_] } 0..3]);
     }
   }
