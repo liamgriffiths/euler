@@ -10,5 +10,5 @@ sub get_racecars{
   return get_racecars(++$i, $max, (@racecars, grep { $_ eq reverse($_) } map { $i * $_ } $i..$max));
 }
 
-print max get_racecars(100, 999);
+print max get_racecars(900, 999);
 print "\n";
