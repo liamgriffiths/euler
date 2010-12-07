@@ -1,17 +1,14 @@
 #!/usr/bin/env node
+var _ = require('./underscore');
 
-var list = new Array();
-for(var i=1;i<1000;i++){
-  if(i % 3 == 0 || i % 5 == 0){
-    list.push(i);
-  }
-}
+// Find the sum of all the multiples of 3 or 5 below 1000.
 
-var total = 0;
+console.log(
+  _(1000)
+    .range()
+    .filter(function(e){ return (e % 3 == 0 || e % 5 == 0) ? e : 0 })
+    .reduce(function(a, b){ return a + b })
+);
 
-for(var n=0;n<list.length;n++){
-  total = total + list[n];
-}
 
-console.log(total);
 
