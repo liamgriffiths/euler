@@ -76,7 +76,7 @@ sub reduce_max_product{
   return reduce { $a * $b } map { @$_ } reduce { sum(@$a) > sum(@$b) ? $a : $b } @_;  
 }
 
-# not the most concise code i've ever written ;) but it runs quick
+# not the most concise code i've ever written ;) but it runs quickly
 print max map { $_->(@grid) } (\&northsouth, \&eastwest, \&nwestseast, \&swestneast);
 print "\n";
 

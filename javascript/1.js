@@ -9,6 +9,4 @@ console.log(
     .filter(function(e){ return (e % 3 == 0 || e % 5 == 0) ? e : 0 })
     .reduce(function(a, b){ return a + b })
 );
-
-
-
+  
