@@ -1,10 +1,10 @@
-#!/usr/bin/env runghc
-
 -- Find the sum of the digits in the number 100!
 
-main = print $ sum $ digits $ facto(100)
+main = do
+    print $ sum $ digits $ fac 100
 
+fac :: Integer -> Integer
+fac n = product [1..n]
 
-facto n = foldl (*) 1 [1..n]
-
-digits = map (read . return) . show
+digits :: Integer -> [Integer]
+digits n = map (\x -> read [x] :: Integer) $ show n
